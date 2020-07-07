@@ -14,6 +14,7 @@
 
     <h4 class="component-title">Variants</h4>
     <Button variant="text">variant="text"</Button>
+    <Button variant="text" color="primary" disabled>variant="text"</Button>
     <Button variant="outline">variant="outline"</Button>
 
     <h4 class="component-title">Disabled</h4>

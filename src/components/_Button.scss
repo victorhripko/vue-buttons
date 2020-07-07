@@ -83,7 +83,9 @@
     }
 
     &--text#{&}--#{$item} {
-      color: map-get($item-map, color);
+      &:not(#{$root}--default) {
+        color: map-get($item-map, bg);
+      }
 
       &:hover,
       &:focus {
@@ -107,7 +109,13 @@
   }
 
   &:disabled {
-    @extend #{$root}--disabled;
+
+    &:not(#{$root}--text) {
+      @extend #{$root}--disabled;
+    }
+
+    background-color: transparent;
+    color: map-get(map-get($colors, disabled), color);
     pointer-events: none;
   }
 
