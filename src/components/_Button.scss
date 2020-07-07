@@ -1,0 +1,127 @@
+.btn {
+  $root: &;
+
+  $colors: (
+    default: (
+      bg: #e0e0e0,
+      color: #3f3f3f,
+    ),
+    primary: (
+      bg: #2962ff,
+      color: white,
+    ),
+    secondary: (
+      bg: #455a64,
+      color: white,
+    ),
+    danger: (
+      bg: #d32f2f,
+      color: white,
+    ),
+    disabled: (
+      bg: #E0E0E0,
+      color: #9E9E9E,
+    ),
+  );
+
+  $sizes: (
+    md: 10px 16px,
+    sm: 8px 12px,
+    lg: 13px 22px
+  );
+
+  @extend #{&}--default, #{&}--md;
+
+  display: inline-block;
+  max-width: 100%;
+  margin: 0;
+  border: 1px solid transparent;
+  background-color: transparent;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  outline: none;
+  transition-property: background-color;
+  transition-timing-function: ease;
+  transition-duration: 100ms;
+
+  @each $item, $item-map in $colors {
+    &--#{$item}:not(#{$root}--outline):not(#{$root}--text) {
+      background-color: map-get($item-map, bg);
+      color: map-get($item-map, color);
+      box-shadow: 0px 2px 3px transparentize(map-get($item-map, bg), .8);
+
+      &:hover,
+      &:focus {
+        background-color: darken(map-get($item-map, bg), 5%);
+      }
+
+      &:active {
+        background-color: darken(map-get($item-map, bg), 10%);
+      }
+    }
+
+    &--outline#{&}--#{$item} {
+      border-color: map-get($item-map, bg);
+      color: map-get($item-map, color);
+
+      &:hover,
+      &:focus {
+        background-color: transparentize(map-get($item-map, bg), .9);
+      }
+
+      &:active {
+        background-color: transparentize(map-get($item-map, bg), .7);
+      }
+    }
+
+    &--text#{&}--#{$item} {
+      color: map-get($item-map, color);
+
+      &:hover,
+      &:focus {
+        background-color: transparentize(map-get($item-map, bg), .9);
+      }
+
+      &:active {
+        background-color: transparentize(map-get($item-map, bg), .7);
+      }
+    }
+  }
+
+  @each $item, $item-value in $sizes {
+    &--#{$item} {
+      padding: $item-value;
+    }
+  }
+
+  &--disable-shadow {
+    box-shadow: none;
+  }
+
+  &:disabled {
+    @extend #{$root}--disabled;
+    pointer-events: none;
+  }
+
+  .material-icons {
+    font-size: 1.15em;
+    vertical-align: sub;
+    line-height: 0;
+
+    &--start {
+      margin-right: 8px;
+    }
+
+    &--end {
+      margin-left: 8px;
+    }
+  }
+}
