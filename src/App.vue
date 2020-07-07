@@ -7,6 +7,10 @@
     <Button color="secondary">color="secondary"</Button>
     <Button color="danger">color="danger"</Button>
 
+    <h4 class="component-title">Shadow / DisabledShadow</h4>
+    <Button color="primary">color="primary"</Button>
+    <Button color="primary" disableShadow>color="primary"</Button>
+
     <h4 class="component-title">Sizes</h4>
     <Button size="sm">size="sm"</Button>
     <Button size="md">size="md"</Button>

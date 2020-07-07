@@ -105,7 +105,9 @@
   }
 
   &--disable-shadow {
-    box-shadow: none;
+    &:not(#{$root}--text):not(#{$root}--outline) {
+      box-shadow: none;
+    }
   }
 
   &:disabled {
