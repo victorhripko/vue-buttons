@@ -1,9 +1,10 @@
 <template>
   <div id="app">
 
+    {{evt}}
     <h4 class="component-title">Colors</h4>
-    <Button color="default">color="default"</Button>
-    <Button color="primary">color="primary"</Button>
+    <Button color="default" @onClick="consoleClick">color="default"</Button>
+    <Button color="primary" class="custom-class" id="custom-id">color="primary"</Button>
     <Button color="secondary">color="secondary"</Button>
     <Button color="danger">color="danger"</Button>
 
@@ -35,8 +36,18 @@ import Button from '@/components/Button.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      evt: null,
+    };
+  },
   components: {
     Button,
+  },
+  methods: {
+    consoleClick(evt) {
+      this.evt = evt.type;
+    },
   },
 };
 </script>

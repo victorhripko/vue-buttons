@@ -1,3 +1,27 @@
+<template>
+  <button
+    class="btn"
+    :class="{
+      [`btn--${color}`]: color,
+      [`btn--${size}`]: size,
+      [`btn--${variant}`]: variant,
+      'btn--disable-shadow': disableShadow
+    }"
+    :disabled="disabled ? disabled : null"
+    :tabindex="disabled ? -1 : null"
+    type="button"
+    @click="onClick"
+  >
+    <i v-if="startIcon" class="material-icons material-icons--start">
+      {{startIcon}}
+    </i>
+    <slot />
+    <i v-if="endIcon" class="material-icons material-icons--end">
+      {{endIcon}}
+    </i>
+  </button>
+</template>
+
 <script>
 import './_Button.scss';
 
@@ -37,28 +61,10 @@ export default {
       type: String,
     },
   },
+  methods: {
+    onClick(evt) {
+      this.$emit('onClick', evt);
+    },
+  },
 };
 </script>
-
-<template>
-  <button
-    class="btn"
-    :class="{
-      [`btn--${color}`]: color,
-      [`btn--${size}`]: size,
-      [`btn--${variant}`]: variant,
-      'btn--disable-shadow': disableShadow
-    }"
-    :disabled="disabled ? disabled : null"
-    :tabindex="disabled ? -1 : null"
-    type="button"
-  >
-    <i v-if="startIcon" class="material-icons material-icons--start">
-      {{startIcon}}
-    </i>
-    <slot />
-    <i v-if="endIcon" class="material-icons material-icons--end">
-      {{endIcon}}
-    </i>
-  </button>
-</template>
